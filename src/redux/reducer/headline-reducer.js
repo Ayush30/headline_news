@@ -5,7 +5,7 @@ const initialState={
 }
 
 const headlineSlice = createSlice({
-  name: 'cart',
+  name: 'headline',
   initialState,
   reducers:{
     setHeadlines: (state, action)=>{
