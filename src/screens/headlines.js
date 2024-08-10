@@ -12,18 +12,22 @@ const Headlines = () => {
   const [visibleData, setVisibleData] = useState([]);
   console.log("GetData",data)
 
+  const loadMore=()=>{
+    setVisibleData((prevData) => {
+      const currentLength = prevData.length;
+      const nextLength = currentLength + 5;
+      const newItems = data.slice(currentLength, nextLength);
+      return [...newItems, ...prevData];
+    });
+  }
+
   useEffect(() => {
     if (data && data.length > 0) {
       setVisibleData(data.slice(0, 10));
     }
 
     const interval = setInterval(() => {
-      setVisibleData((prevData) => {
-        const currentLength = prevData.length;
-        const nextLength = currentLength + 5;
-        const newItems = data.slice(currentLength, nextLength);
-        return [...newItems, ...prevData];
-      });
+      loadMore()
     }, 10000);
 
     return () => clearInterval(interval);
@@ -40,7 +44,7 @@ const Headlines = () => {
             renderItem={({ item,index }) => (<Flatlistcard item={item}/>)}
             showsVerticalScrollIndicator={false}
           />
-          <HeaderButton style={{position:'absolute',bottom:0}}></HeaderButton>
+          <HeaderButton onPress={loadMore} style={{position:'absolute',bottom:0}}></HeaderButton>
         </View>
     </SafeAreaView>
   )

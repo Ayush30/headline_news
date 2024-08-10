@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Touchable, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const HeaderButton = ({props}) => {
+const HeaderButton = ({onPress,style}) => {
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.buttonWrapper}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={styles.buttonWrapper}>
         <Text style={styles.buttonText}>Load More</Text>
     </TouchableOpacity>
   )
@@ -23,4 +23,4 @@ const styles=StyleSheet.create({
     }
 })
 
-export default HeaderButton
+export default React.memo(HeaderButton)
