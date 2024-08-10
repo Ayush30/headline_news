@@ -1,0 +1,1 @@
+exports.splashBackground = require('../assets/images/trump-splash.jpg')
