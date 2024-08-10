@@ -1,60 +1,70 @@
-import { View, Text, ImageBackground, StatusBar,SafeAreaView, Alert } from 'react-native'
-import React, { useEffect } from 'react'
-import { splashBackground } from '../assets'
-import { fetchHeadlines } from '../network/fetch-headlines'
-import { setHeadlines } from '../redux/reducer/headline-reducer'
-import { useDispatch } from 'react-redux'
+import {
+  View,
+  Text,
+  ImageBackground,
+  StatusBar,
+  SafeAreaView,
+  Alert,
+} from 'react-native';
+import React, {useEffect} from 'react';
+import {splashBackground} from '../assets';
+import {fetchHeadlines} from '../network/fetch-headlines';
+import {setHeadlines} from '../redux/reducer/headline-reducer';
+import {useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = ({navigation}) => {
-
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
   const persistConfigKey = 'root';
 
-  const checkIfKeyExists = async (key) => {
+  const checkIfKeyExists = async key => {
     try {
       const data = await AsyncStorage.getItem(key);
       if (data !== null) {
         // Data exists for the given key
-        return true
+        return true;
       } else {
         // No data found for the key
-        loadHeadlines()
+        loadHeadlines();
       }
     } catch (error) {
       // Error retrieving data
-      Alert.alert("There was some issue getting your headlines")
+      Alert.alert('There was some issue getting your headlines');
     }
   };
 
   const loadHeadlines = async () => {
     try {
-      const response = await fetchHeadlines()
-      dispatch(setHeadlines(response.articles))
+      const response = await fetchHeadlines();
+      dispatch(setHeadlines(response.articles));
     } catch (error) {
-      Alert.alert("You're offline, no worries we'll try to fetch your headlines locally")
+      Alert.alert(
+        "You're offline, no worries we'll try to fetch your headlines locally",
+      );
     }
-  }
+  };
 
-  useEffect(()=>{
-
+  useEffect(() => {
     checkIfKeyExists(persistConfigKey);
 
-    const timeoutId=setTimeout(()=>{
-      navigation.replace("Headlines")
-    },7000)
+    const timeoutId = setTimeout(() => {
+      navigation.replace('Headlines');
+    }, 7000);
 
-    return () => clearTimeout(timeoutId)
-  })
+    return () => clearTimeout(timeoutId);
+  });
 
   return (
-        <SafeAreaView style={{flex:1}}>
-          <ImageBackground blurRadius={15} style={{flex:1}} source={splashBackground}>
-            <StatusBar translucent backgroundColor="transparent" />
-          </ImageBackground>
-        </SafeAreaView>
-  )
-}
+    <SafeAreaView style={{flex: 1}}>
+      <ImageBackground
+        blurRadius={15}
+        style={{flex: 1}}
+        source={splashBackground}>
+        <StatusBar translucent backgroundColor="transparent" />
+      </ImageBackground>
+    </SafeAreaView>
+  );
+};
 
-export default SplashScreen
+export default SplashScreen;
