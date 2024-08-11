@@ -1,79 +1,51 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# News Headlines App
+This is a React Native application designed to fetch and display the latest news headlines. It incorporates various features and technologies to provide a smooth user experience and efficient state management.
 
-# Getting Started
+# Features
+## 1. Splash Screen:
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Description: Displays a splash screen with a background image while the app is loading.
+Implementation: The splash screen is shown for 7 seconds before navigating to the headlines screen. If data exists in AsyncStorage, it loads the headlines; otherwise, it fetches them from an API.
 
-## Step 1: Start the Metro Server
+## 2. Headlines Screen:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Description: Shows a list of news headlines.
+Implementation: Utilizes the FlatList component to display headlines. Initially, 10 headlines are shown. The list is updated every 10 seconds with 5 more headlines, and additional headlines can be loaded by pressing a button.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 3. Redux for State Management:
 
-```bash
-# using npm
-npm start
+Description: Manages the state of the headlines using Redux.
+Implementation: Redux is used to manage the state of the headlines data. The headlineSlice reducer handles the state updates, and the store is configured with redux-persist to persist the state across app restarts.
 
-# OR using Yarn
-yarn start
-```
+## 4. Redux Persist:
 
-## Step 2: Start your Application
+Description: Persist the Redux store to AsyncStorage.
+Implementation: redux-persist is configured to save the Redux state to AsyncStorage, ensuring that the headlines data is retained even after the app is closed and reopened.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
-### For Android
+## 5. Responsive Design:
 
-```bash
-# using npm
-npm run android
+Description: Adapts the layout and styles based on the platform and screen size.
+Implementation: Uses platform-specific adjustments and styling to ensure a consistent user experience across different devices and operating systems.
 
-# OR using Yarn
-yarn android
-```
 
-### For iOS
+## 6. Error Handling:
 
-```bash
-# using npm
-npm run ios
+Description: Provides alerts if there are issues with fetching headlines or retrieving data.
+Implementation: Uses Alert to notify users of errors, such as being offline or having issues retrieving data from AsyncStorage.
 
-# OR using Yarn
-yarn ios
-```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## 7. Load More Functionality:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+Description: Allows users to load more headlines by pressing a button or automatically every 10 seconds.
+Implementation: A HeaderButton component enables manual loading of more headlines. The setInterval function ensures that more headlines are fetched and displayed every 10 seconds.
 
-## Step 3: Modifying your App
 
-Now that you have successfully run the app, let's modify it.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+# Dependencies
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+React Native: A framework for building native apps using React.
+Redux: A predictable state container for JavaScript apps.
+Redux Persist: Persist and rehydrate a redux store.
+React Navigation: Routing and navigation for your React Native apps.
+Async Storage: An asynchronous, unencrypted, persistent, key-value storage system for React Native.
