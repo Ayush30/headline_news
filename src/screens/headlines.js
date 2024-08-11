@@ -17,7 +17,7 @@ import {setHeadlines} from '../redux/reducer/headline-reducer';
 const Headlines = () => {
   const data = useSelector(store => store.headline.data);
   const [visibleData, setVisibleData] = useState([]);
-  console.log('GetData', data);
+  
   const dispatch=useDispatch()
 
   const loadMore = () => {
