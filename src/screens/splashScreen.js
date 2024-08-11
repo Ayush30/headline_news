@@ -18,7 +18,7 @@ const SplashScreen = ({navigation}) => {
 
   const persistConfigKey = 'root';
 
-  const checkIfKeyExists = async key => {
+  const checkIfKeyExists = async (key) => {
     try {
       const data = await AsyncStorage.getItem(key);
       if (data !== null) {

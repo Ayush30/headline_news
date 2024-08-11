@@ -7,15 +7,17 @@ import {
   FlatList,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {store} from '../redux/store';
 import Flatlistcard from '../components/flatlistcard';
 import HeaderButton from '../components/headerButton';
+import { fetchHeadlines } from '../network/fetch-headlines';
 
 const Headlines = () => {
   const data = useSelector(store => store.headline.data);
   const [visibleData, setVisibleData] = useState([]);
   console.log('GetData', data);
+  const dispatch=useDispatch()
 
   const loadMore = () => {
     setVisibleData(prevData => {
@@ -29,6 +31,20 @@ const Headlines = () => {
   useEffect(() => {
     if (data && data.length > 0) {
       setVisibleData(data.slice(0, 10));
+    }
+    const loadHeadlines = async (pageSize) => {
+      try {
+        const response = await fetchHeadlines(pageSize);
+        dispatch(setHeadlines(response.articles));
+      } catch (error) {
+        Alert.alert(
+          "You're offline, no worries we'll try to fetch your headlines locally",
+        );
+      }
+    };
+
+    if(visibleData.length==100){
+      loadHeadlines(visibleData.length+100)
     }
 
     const interval = setInterval(() => {
