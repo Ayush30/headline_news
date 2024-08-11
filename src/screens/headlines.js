@@ -12,6 +12,7 @@ import {store} from '../redux/store';
 import Flatlistcard from '../components/flatlistcard';
 import HeaderButton from '../components/headerButton';
 import { fetchHeadlines } from '../network/fetch-headlines';
+import {setHeadlines} from '../redux/reducer/headline-reducer';
 
 const Headlines = () => {
   const data = useSelector(store => store.headline.data);
