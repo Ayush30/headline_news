@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet, Image, Linking} from 'react-native';
 import React from 'react';
 
-const Flatlistcard = ({item}) => {
+const Flatlistcard = ({item,navigation}) => {
   return (
     <View style={styles.container}>
       <Text numberOfLines={1} style={{fontWeight: 800, marginVertical: 10}}>
@@ -13,7 +13,7 @@ const Flatlistcard = ({item}) => {
       <Text
         style={{alignSelf: 'center', fontSize: 24}}
         onPress={() => {
-          Linking.openURL(item.url);
+          navigation.navigate('Webview',{url:item.url})
         }}>
         {' '}
         Click here to read full...{' '}

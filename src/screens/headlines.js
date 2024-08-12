@@ -14,7 +14,7 @@ import HeaderButton from '../components/headerButton';
 import { fetchHeadlines } from '../network/fetch-headlines';
 import {setHeadlines} from '../redux/reducer/headline-reducer';
 
-const Headlines = () => {
+const Headlines = ({navigation}) => {
   const data = useSelector(store => store.headline.data);
   const [visibleData, setVisibleData] = useState([]);
   
@@ -72,7 +72,7 @@ const Headlines = () => {
         <FlatList
           data={visibleData}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => <Flatlistcard item={item} />}
+          renderItem={({item, index}) => <Flatlistcard item={item} navigation={navigation} />}
           showsVerticalScrollIndicator={false}
         />
         <HeaderButton
