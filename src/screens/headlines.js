@@ -67,7 +67,7 @@ const Headlines = ({navigation}) => {
         style={{
           flex: 1,
           marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : '',
-          backgroundColor: '#D4BCA2',
+          backgroundColor: '#1A1A2E',
         }}>
         <FlatList
           data={visibleData}
