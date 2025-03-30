@@ -17,6 +17,7 @@ import {setHeadlines} from '../redux/reducer/headline-reducer';
 const Headlines = ({navigation}) => {
   const data = useSelector(store => store.headline.data);
   const [visibleData, setVisibleData] = useState([]);
+  const [prevLength,setPrevLength] = useState(10)
   
   const dispatch=useDispatch()
 
