@@ -20,6 +20,7 @@ const Headlines = ({navigation}) => {
   
   const dispatch=useDispatch()
 
+
   const loadMore = () => {
     setVisibleData(prevData => {
       const currentLength = prevData.length;
@@ -31,7 +32,7 @@ const Headlines = ({navigation}) => {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      setVisibleData(data.slice(0, 10));
+      setVisibleData(data.slice(0, 10))
     }
     const loadHeadlines = async (pageSize) => {
       try {
